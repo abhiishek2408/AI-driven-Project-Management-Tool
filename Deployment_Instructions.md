@@ -6,7 +6,7 @@
 Clone repository
 
 ```bash
-git clone https://github.com/your-username/ai-project-manager.git
+git clone https://github.com/abhiishek2408/AI-driven-Project-Management-Tool.git
 cd backend
 ```
 
@@ -109,7 +109,7 @@ npm run build
    - `GEMINI_API_KEY=...`
    - `JWT_SECRET=...`
 8. Click 'Create Web Service'.
-9. Wait for build & deploy. Copy the Render backend URL (e.g., `https://your-backend.onrender.com`).
+9. Wait for build & deploy. Copy the Render backend URL (e.g., `https://ai-driven-project-management-tool.onrender.com/`).
 
 ---
 
@@ -121,9 +121,9 @@ npm run build
 4. Set build command: `npm run build`
 5. Set output/public directory: `build`
 6. Add environment variable:
-   - `REACT_APP_API_URL=https://your-backend.onrender.com`
+   - `REACT_APP_API_URL=https://ai-driven-project-management-tool.onrender.com/`
 7. Click 'Deploy'.
-8. Wait for build & deploy. Copy the Vercel frontend URL (e.g., `https://your-frontend.vercel.app`).
+8. Wait for build & deploy. Copy the Vercel frontend URL (e.g., `https://ai-driven-project-management-tool.vercel.app/`).
 
 ---
 

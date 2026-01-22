@@ -17,8 +17,8 @@ This is a full-stack project management application powered by AI suggestions. I
 
 ## Live Links
 
-- **Frontend (Vercel):** [https://your-frontend.vercel.app](https://your-frontend.vercel.app)
-- **Backend (Render):** [https://ai-driven-project-management-tool.onrender.com/](https://ai-driven-project-management-tool.onrender.com/)
+- **Frontend (Vercel):** [https://ai-driven-project-management-tool.vercel.app](https://ai-driven-project-management-tool.vercel.app)
+- **Backend (Render):** [https://ai-driven-project-management-tool.onrender.com](https://ai-driven-project-management-tool.onrender.com)
 
 ## Demo Login Credentials (Hosted Web)
 You can use the following demo credentials to log in to all dashboards:
