@@ -21,7 +21,7 @@ function Navbar() {
 
   const handleLogout = () => {
     logout();
-    window.location.href = "https://ai-driven-project-management-tool.onrender.com/";
+    window.location.href = "https://ai-driven-project-management-tool.vercel.app/";
   };
 
   const handleDrawerToggle = () => {

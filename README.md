@@ -24,13 +24,13 @@ This is a full-stack project management application powered by AI suggestions. I
 You can use the following demo credentials to log in to all dashboards:
 
 - **Admin Dashboard**
-  - Email: admin@example.com
+  - Email: admin99@gmail.com
   - Password: admin123
 - **Project Manager Dashboard**
-  - Email: manager@example.com
+  - Email: amanprojectmanager99@gmail.com
   - Password: projectmanager123
 - **Developer Dashboard**
-  - Email: developer@example.com
+  - Email: abhisheky24@gmail.com
   - Password: developer123
 
     
