@@ -1,0 +1,196 @@
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+import { 
+  TextField, Button, Paper, Typography, Snackbar, Alert, 
+  Box, Container, InputAdornment, IconButton, Divider, Stack 
+} from '@mui/material';
+import {
+  Email as EmailIcon,
+  Lock as LockIcon,
+  Visibility,
+  VisibilityOff,
+  Login as LoginIcon,
+  AccountTree as LogoIcon
+} from '@mui/icons-material';
+import axios from 'axios';
+
+function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+  const [notification, setNotification] = useState({ open: false, message: '', severity: 'info' });
+  
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError(''); // Clear previous errors
+    try {
+      const res = await axios.post('http://localhost:5000/api/users/login', { email, password });
+      if (res.data && res.data.user && res.data.token) {
+        login(res.data.user);
+        localStorage.setItem('token', res.data.token);
+        setNotification({ open: true, message: 'Login successful!', severity: 'success' });
+        
+        const role = res.data.user.role;
+        // Role based navigation logic kept intact
+        setTimeout(() => {
+          if (role === 'Developer') navigate('/developer');
+          else if (role === 'ProjectManager') navigate('/project-manager/');
+          else if (role === 'Admin') navigate('/admin');
+        }, 500);
+      } else {
+        setError('Invalid credentials. Please check your email and password.');
+      }
+    } catch (err) {
+      setError('Login failed. Server might be unreachable.');
+    }
+  };
+
+  return (
+    <Box sx={{ 
+      minHeight: '100vh', 
+      display: 'flex', 
+      alignItems: 'center', 
+      background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+      py: 4 
+    }}>
+      <Container maxWidth="sm">
+        <Paper 
+          elevation={0} 
+          sx={{ 
+            p: { xs: 3, md: 5 }, 
+            borderRadius: 4, 
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 20px 25px -5px rgba(0,0,0,0.05)'
+          }}
+        >
+          {/* Logo & Header */}
+          <Stack alignItems="center" spacing={1} sx={{ mb: 4 }}>
+            <Box sx={{ 
+              bgcolor: 'primary.main', 
+              p: 1.5, 
+              borderRadius: 2, 
+              display: 'flex', 
+              color: 'white' 
+            }}>
+              <LogoIcon fontSize="large" />
+            </Box>
+            <Typography variant="h4" fontWeight={900} sx={{ color: '#1e293b', letterSpacing: '-1px' }}>
+              Welcome Back
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              AI-driven Project Management System
+            </Typography>
+          </Stack>
+
+          {error && (
+            <Alert severity="error" sx={{ mb: 3, borderRadius: 2 }}>
+              {error}
+            </Alert>
+          )}
+
+          <form onSubmit={handleLogin}>
+            <Stack spacing={2.5}>
+              <TextField
+                label="Email Address"
+                type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                fullWidth
+                required
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <EmailIcon sx={{ color: 'text.secondary', fontSize: 20 }} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              
+              <TextField
+                label="Password"
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                fullWidth
+                required
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <LockIcon sx={{ color: 'text.secondary', fontSize: 20 }} />
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
+              />
+
+              <Button 
+                type="submit" 
+                variant="contained" 
+                size="large" 
+                fullWidth 
+                startIcon={<LoginIcon />}
+                sx={{ 
+                  py: 1.5, 
+                  borderRadius: 2, 
+                  fontWeight: 700,
+                  fontSize: '1rem',
+                  textTransform: 'none',
+                  boxShadow: '0 10px 15px -3px rgba(25, 118, 210, 0.3)'
+                }}
+              >
+                Sign In
+              </Button>
+            </Stack>
+          </form>
+
+          <Divider sx={{ my: 4 }}>
+            <Typography variant="caption" color="text.secondary" sx={{ px: 1 }}>
+              OR
+            </Typography>
+          </Divider>
+
+          <Box sx={{ textAlign: 'center' }}>
+            <Typography variant="body2" color="text.secondary">
+              New to the platform?{' '}
+              <Button 
+                variant="text" 
+                sx={{ fontWeight: 700, textTransform: 'none' }}
+                onClick={() => navigate('/SignUp')}
+              >
+                Create an account
+              </Button>
+            </Typography>
+          </Box>
+        </Paper>
+
+        <Typography variant="caption" display="block" align="center" sx={{ mt: 4, color: 'text.secondary' }}>
+          &copy; {new Date().getFullYear()} AI-driven Project Management. All rights reserved.
+        </Typography>
+      </Container>
+
+      <Snackbar 
+        open={notification.open} 
+        autoHideDuration={3000} 
+        onClose={() => setNotification({ ...notification, open: false })}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert severity={notification.severity} variant="filled" sx={{ width: '100%', borderRadius: 2 }}>
+          {notification.message}
+        </Alert>
+      </Snackbar>
+    </Box>
+  );
+}
+
+export default Login;
