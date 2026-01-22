@@ -35,7 +35,7 @@ function CreateProject() {
   const [taskModalOpen, setTaskModalOpen] = useState(false);
   // const [editProject, setEditProject] = useState(null);
 
-  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+  const API_URL = process.env.REACT_APP_API_URL || 'https://ai-driven-project-management-tool.onrender.com';
 
   useEffect(() => {
     const fetchData = async () => {

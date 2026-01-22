@@ -60,7 +60,7 @@ function ManageUser() {
   // Modal State
   const [open, setOpen] = useState(false);
 
-  const API_URL = 'http://localhost:5000/api/users';
+  const API_URL = 'https://ai-driven-project-management-tool.onrender.com/api/users';
 
   useEffect(() => {
     fetchUsers();

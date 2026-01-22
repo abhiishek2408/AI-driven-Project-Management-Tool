@@ -21,7 +21,7 @@ function Navbar() {
 
   const handleLogout = () => {
     logout();
-    window.location.href = "http://localhost:3000/";
+    window.location.href = "https://ai-driven-project-management-tool.onrender.com/";
   };
 
   const handleDrawerToggle = () => {

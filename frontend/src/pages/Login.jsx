@@ -29,7 +29,7 @@ function Login() {
     e.preventDefault();
     setError(''); // Clear previous errors
     try {
-      const res = await axios.post('http://localhost:5000/api/users/login', { email, password });
+      const res = await axios.post('https://ai-driven-project-management-tool.onrender.com/api/users/login', { email, password });
       if (res.data && res.data.user && res.data.token) {
         login(res.data.user);
         localStorage.setItem('token', res.data.token);

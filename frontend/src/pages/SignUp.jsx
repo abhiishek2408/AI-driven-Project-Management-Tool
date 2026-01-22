@@ -17,7 +17,7 @@ function SignUp() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/users/signup', { name, email, password });
+      const res = await axios.post('https://ai-driven-project-management-tool.onrender.com/api/users/signup', { name, email, password });
       if (res.data && res.data.user) {
         login(res.data.user);
         setNotification({ open: true, message: 'Signup successful!', severity: 'success' });

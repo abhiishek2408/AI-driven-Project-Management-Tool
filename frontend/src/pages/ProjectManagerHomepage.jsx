@@ -16,7 +16,7 @@ import ProjectSelector from '../components/ProjectSelector';
 import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_URL = process.env.REACT_APP_API_URL || 'https://ai-driven-project-management-tool.onrender.com';
 
 function Dashboard() {
   const theme = useTheme();

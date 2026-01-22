@@ -31,7 +31,7 @@ npm start
 ```
 
 Backend will run on:
-👉 http://localhost:5000
+👉 https://ai-driven-project-management-tool.onrender.com
 
 ---
 
@@ -47,7 +47,7 @@ npm install
 Add environment variable
 
 ```env
-REACT_APP_API_URL=http://localhost:5000
+REACT_APP_API_URL=https://ai-driven-project-management-tool.onrender.com
 ```
 
 Build React app
